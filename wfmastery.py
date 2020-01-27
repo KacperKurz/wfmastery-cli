@@ -29,6 +29,7 @@ def updateWarframes():
     warframes_file = open('warframes.csv','w')
     warframes_write = csv.writer(warframes_file)
     warframes_write.writerows(warframes)
+    warframes_file.close
 
 
 def updateSentinels():
@@ -54,6 +55,7 @@ def updateSentinels():
     sentinels_file = open('sentinels.csv', 'w')
     sentinels_write = csv.writer(sentinels_file)
     sentinels_write.writerows(sentinels)
+    sentinels_file.close
 
 
 def updateSecondaries():
@@ -79,6 +81,7 @@ def updateSecondaries():
     secondaries_file = open('secondaries.csv', 'w')
     secondaries_write = csv.writer(secondaries_file)
     secondaries_write.writerows(secondaries)
+    secondaries_file.close()
 
 
 def updatePrimaries():
@@ -104,6 +107,7 @@ def updatePrimaries():
     primaries_file = open('primaries.csv', 'w')
     primaries_write = csv.writer(primaries_file)
     primaries_write.writerows(primaries)
+    primaries_file.close()
 
 
 def updatePets():
@@ -129,6 +133,7 @@ def updatePets():
     pets_file = open('pets.csv', 'w')
     pets_write = csv.writer(pets_file)
     pets_write.writerows(pets)
+    pets_file.close()
 
 
 def updateMelees():
@@ -154,6 +159,7 @@ def updateMelees():
     melees_file = open('melees.csv', 'w')
     melees_write = csv.writer(melees_file)
     melees_write.writerows(melees)
+    melees_file.close()
 
 
 def updateArchwings():
@@ -179,6 +185,7 @@ def updateArchwings():
     archwings_file = open('archwings.csv', 'w')
     archwings_write = csv.writer(archwings_file)
     archwings_write.writerows(archwings)
+    archwings_file.close()
 
 
 def updateArchwingMelees():
@@ -204,6 +211,7 @@ def updateArchwingMelees():
     archwing_melees_file = open('archwing_melees.csv', 'w')
     archwing_melees_write = csv.writer(archwing_melees_file)
     archwing_melees_write.writerows(archwing_melees)
+    archwing_melees_file.close()
 
 
 def updateArchwingGuns():
@@ -229,6 +237,7 @@ def updateArchwingGuns():
     archwing_guns_file = open('archwing_guns.csv', 'w')
     archwing_guns_write = csv.writer(archwing_guns_file)
     archwing_guns_write.writerows(archwing_guns)
+    archwing_guns_file.close()
 
 
 def update():
@@ -241,6 +250,212 @@ def update():
     updatePrimaries()
     updateSecondaries()
     updateSentinels()
+
+
+def add(arguments):
+    warframes_file_r = open('warframes.csv', 'r')
+    warframes_read = csv.reader(warframes_file_r)
+    warframes = list(warframes_read)
+
+    archwing_guns_file_r = open('archwing_guns.csv', 'r')
+    archwing_guns_read = csv.reader(archwing_guns_file_r)
+    archwing_guns = list(archwing_guns_read)
+
+    archwing_melees_file_r = open('archwing_melees.csv', 'r')
+    archwing_melees_read = csv.reader(archwing_melees_file_r)
+    archwing_melees = list(archwing_melees_read)
+
+    archwings_file_r = open('archwings.csv', 'r')
+    archwings_read = csv.reader(archwings_file_r)
+    archwings = list(archwings_read)
+
+    melees_file_r = open('melees.csv', 'r')
+    melees_read = csv.reader(melees_file_r)
+    melees = list(melees_read)
+
+    pets_file_r = open('pets.csv', 'r')
+    pets_read = csv.reader(pets_file_r)
+    pets = list(pets_read)
+
+    primaries_file_r = open('primaries.csv', 'r')
+    primaries_read = csv.reader(primaries_file_r)
+    primaries = list(primaries_read)
+
+    secondaries_file_r = open('secondaries.csv', 'r')
+    secondaries_read = csv.reader(secondaries_file_r)
+    secondaries = list(secondaries_read)
+
+    sentinels_file_r = open('sentinels.csv', 'r')
+    sentinels_read = csv.reader(sentinels_file_r)
+    sentinels = list(sentinels_read)
+
+    for i in range(len(arguments)):
+        for j in (warframes, archwing_guns, archwing_melees, archwings, melees, pets, primaries, secondaries, sentinels):
+            for k in range(len(j)):
+                if arguments[i]==j[k][0]:
+                    j[k][1]=1
+                    break
+
+    warframes_file_w = open('warframes.csv', 'w')
+    warframes_write = csv.writer(warframes_file_w)
+
+    archwing_guns_file_w = open('archwing_guns.csv', 'w')
+    archwing_guns_write = csv.writer(archwing_guns_file_w)
+
+    archwing_melees_file_w = open('archwing_melees.csv', 'w')
+    archwing_melees_write = csv.writer(archwing_melees_file_w)
+
+    archwings_file_w = open('archwings.csv', 'w')
+    archwings_write = csv.writer(archwings_file_w)
+
+    melees_file_w = open('melees.csv', 'w')
+    melees_write = csv.writer(melees_file_w)
+
+    pets_file_w = open('pets.csv', 'w')
+    pets_write = csv.writer(pets_file_w)
+
+    primaries_file_w = open('primaries.csv', 'w')
+    primaries_write = csv.writer(primaries_file_w)
+
+    secondaries_file_w = open('secondaries.csv', 'w')
+    secondaries_write = csv.writer(secondaries_file_w)
+
+    sentinels_file_w = open('sentinels.csv', 'w')
+    sentinels_write = csv.writer(sentinels_file_w)
+
+    warframes_write.writerows(warframes)
+    archwing_guns_write.writerows(archwing_guns)
+    archwing_melees_write.writerows(archwing_melees)
+    archwings_write.writerows(archwings)
+    melees_write.writerows(melees)
+    pets_write.writerows(pets)
+    primaries_write.writerows(primaries)
+    secondaries_write.writerows(secondaries)
+    sentinels_write.writerows(sentinels)
+
+    warframes_file_w.close()
+    archwing_guns_file_w.close()
+    archwing_melees_file_w.close()
+    archwings_file_w.close()
+    melees_file_w.close()
+    pets_file_w.close()
+    primaries_file_w.close()
+    secondaries_file_w.close()
+    sentinels_file_w.close()
+
+    warframes_file_r.close()
+    archwing_guns_file_r.close()
+    archwing_melees_file_r.close()
+    archwings_file_r.close()
+    melees_file_r.close()
+    pets_file_r.close()
+    primaries_file_r.close()
+    secondaries_file_r.close()
+    sentinels_file_r.close()
+
+
+def delete(arguments):
+    warframes_file_r = open('warframes.csv', 'r')
+    warframes_read = csv.reader(warframes_file_r)
+    warframes = list(warframes_read)
+
+    archwing_guns_file_r = open('archwing_guns.csv', 'r')
+    archwing_guns_read = csv.reader(archwing_guns_file_r)
+    archwing_guns = list(archwing_guns_read)
+
+    archwing_melees_file_r = open('archwing_melees.csv', 'r')
+    archwing_melees_read = csv.reader(archwing_melees_file_r)
+    archwing_melees = list(archwing_melees_read)
+
+    archwings_file_r = open('archwings.csv', 'r')
+    archwings_read = csv.reader(archwings_file_r)
+    archwings = list(archwings_read)
+
+    melees_file_r = open('melees.csv', 'r')
+    melees_read = csv.reader(melees_file_r)
+    melees = list(melees_read)
+
+    pets_file_r = open('pets.csv', 'r')
+    pets_read = csv.reader(pets_file_r)
+    pets = list(pets_read)
+
+    primaries_file_r = open('primaries.csv', 'r')
+    primaries_read = csv.reader(primaries_file_r)
+    primaries = list(primaries_read)
+
+    secondaries_file_r = open('secondaries.csv', 'r')
+    secondaries_read = csv.reader(secondaries_file_r)
+    secondaries = list(secondaries_read)
+
+    sentinels_file_r = open('sentinels.csv', 'r')
+    sentinels_read = csv.reader(sentinels_file_r)
+    sentinels = list(sentinels_read)
+
+    for i in range(len(arguments)):
+        for j in (warframes, archwing_guns, archwing_melees, archwings, melees, pets, primaries, secondaries, sentinels):
+            for k in range(len(j)):
+                if arguments[i]==j[k][0]:
+                    j[k][1]=0
+                    break
+
+    warframes_file_w = open('warframes.csv', 'w')
+    warframes_write = csv.writer(warframes_file_w)
+
+    archwing_guns_file_w = open('archwing_guns.csv', 'w')
+    archwing_guns_write = csv.writer(archwing_guns_file_w)
+
+    archwing_melees_file_w = open('archwing_melees.csv', 'w')
+    archwing_melees_write = csv.writer(archwing_melees_file_w)
+
+    archwings_file_w = open('archwings.csv', 'w')
+    archwings_write = csv.writer(archwings_file_w)
+
+    melees_file_w = open('melees.csv', 'w')
+    melees_write = csv.writer(melees_file_w)
+
+    pets_file_w = open('pets.csv', 'w')
+    pets_write = csv.writer(pets_file_w)
+
+    primaries_file_w = open('primaries.csv', 'w')
+    primaries_write = csv.writer(primaries_file_w)
+
+    secondaries_file_w = open('secondaries.csv', 'w')
+    secondaries_write = csv.writer(secondaries_file_w)
+
+    sentinels_file_w = open('sentinels.csv', 'w')
+    sentinels_write = csv.writer(sentinels_file_w)
+
+    warframes_write.writerows(warframes)
+    archwing_guns_write.writerows(archwing_guns)
+    archwing_melees_write.writerows(archwing_melees)
+    archwings_write.writerows(archwings)
+    melees_write.writerows(melees)
+    pets_write.writerows(pets)
+    primaries_write.writerows(primaries)
+    secondaries_write.writerows(secondaries)
+    sentinels_write.writerows(sentinels)
+
+    warframes_file_w.close()
+    archwing_guns_file_w.close()
+    archwing_melees_file_w.close()
+    archwings_file_w.close()
+    melees_file_w.close()
+    pets_file_w.close()
+    primaries_file_w.close()
+    secondaries_file_w.close()
+    sentinels_file_w.close()
+
+    warframes_file_r.close()
+    archwing_guns_file_r.close()
+    archwing_melees_file_r.close()
+    archwings_file_r.close()
+    melees_file_r.close()
+    pets_file_r.close()
+    primaries_file_r.close()
+    secondaries_file_r.close()
+    sentinels_file_r.close()
+
+
 
 # TODO add more functions
 # TODO error handling
@@ -261,9 +476,10 @@ def parse_arguments():
                 if arguments[i][0] == '-':
                     break
                 function_arguments.append(arguments[i])
-                # TODO call default action
+                # TODO call default action aka add
         # scan through arguments searching for functions
         for i in range(len(arguments)):
+            global error
             if error:
                 break
             if arguments[i][0] == '-':
@@ -275,7 +491,26 @@ def parse_arguments():
                     function_arguments.append(arguments[j])
                 # call functions
                 if arguments[i] == "-u" or arguments[i] == "--update":
+                    if len(function_arguments):
+                        print("Update function doesn't accept any arguments, aborting")
+                        error = 1
+                        break
                     update()
+                elif arguments[i] == "-a" or arguments[i] == "--add":
+                    if not len(function_arguments):
+                        print("No arguments provided, aborting")
+                        error = 1
+                        break
+                    add(function_arguments)
+                elif arguments[i] == "-d" or arguments[i] == "--delete":
+                    if not len(function_arguments):
+                        print("No arguments provided, aborting")
+                        error = 1
+                        break
+                    delete(function_arguments)
+                else:
+                    print("Invalid function, aborting")
+                    error = 1
 
 
 def downloadData(url):
