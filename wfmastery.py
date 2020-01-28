@@ -295,6 +295,9 @@ def add(arguments):
                 if arguments[i]==j[k][0]:
                     j[k][1]=1
                     break
+        global error
+        error = 1
+        print("Invalid argument, aborting.")
 
     warframes_file_w = open('warframes.csv', 'w')
     warframes_write = csv.writer(warframes_file_w)
@@ -397,6 +400,9 @@ def delete(arguments):
                 if arguments[i]==j[k][0]:
                     j[k][1]=0
                     break
+        global error
+        error = 1
+        print("Invalid argument, aborting.")
 
     warframes_file_w = open('warframes.csv', 'w')
     warframes_write = csv.writer(warframes_file_w)
@@ -456,17 +462,100 @@ def delete(arguments):
     sentinels_file_r.close()
 
 
+def read(arguments):
+    warframes_file_r = open('warframes.csv', 'r')
+    warframes_read = csv.reader(warframes_file_r)
+    warframes = list(warframes_read)
 
-# TODO add more functions
-# TODO error handling
+    archwing_guns_file_r = open('archwing_guns.csv', 'r')
+    archwing_guns_read = csv.reader(archwing_guns_file_r)
+    archwing_guns = list(archwing_guns_read)
+
+    archwing_melees_file_r = open('archwing_melees.csv', 'r')
+    archwing_melees_read = csv.reader(archwing_melees_file_r)
+    archwing_melees = list(archwing_melees_read)
+
+    archwings_file_r = open('archwings.csv', 'r')
+    archwings_read = csv.reader(archwings_file_r)
+    archwings = list(archwings_read)
+
+    melees_file_r = open('melees.csv', 'r')
+    melees_read = csv.reader(melees_file_r)
+    melees = list(melees_read)
+
+    pets_file_r = open('pets.csv', 'r')
+    pets_read = csv.reader(pets_file_r)
+    pets = list(pets_read)
+
+    primaries_file_r = open('primaries.csv', 'r')
+    primaries_read = csv.reader(primaries_file_r)
+    primaries = list(primaries_read)
+
+    secondaries_file_r = open('secondaries.csv', 'r')
+    secondaries_read = csv.reader(secondaries_file_r)
+    secondaries = list(secondaries_read)
+
+    sentinels_file_r = open('sentinels.csv', 'r')
+    sentinels_read = csv.reader(sentinels_file_r)
+    sentinels = list(sentinels_read)
+
+    if not len(arguments):
+        for i in (warframes, archwing_guns, archwing_melees, archwings, melees, pets, primaries, secondaries, sentinels):
+            for j in range(len(i)):
+                if not i[j][1]:
+                    print(i[j][0])
+    else:
+        for i in range(len(arguments)):
+            if arguments[i]=="warframes":
+                for j in range(len(warframes)):
+                    if warframes[j][1]=='0':
+                        print(warframes[j][0])
+            elif arguments[i]=="archguns":
+                for j in range(len(archwing_guns)):
+                    if archwing_guns[j][1]=='0':
+                        print(archwing_guns[j][0])
+            elif arguments[i]=="archmelee":
+                for j in range(len(archwing_melees)):
+                    if archwing_melees[j][1]=='0':
+                        print(archwing_melees[j][0])
+            elif arguments[i]=="archwings":
+                for j in range(len(archwings)):
+                    if archwings[j][1]=='0':
+                        print(archwings[j][0])
+            elif arguments[i]=="meele":
+                for j in range(len(melees)):
+                    if melees[j][1]=='0':
+                        print(melees[j][0])
+            elif arguments[i]=="pets":
+                for j in range(len(pets)):
+                    if pets[j][1]=='0':
+                        print(pets[j][0])
+            elif arguments[i]=="primary":
+                for j in range(len(primaries)):
+                    if primaries[j][1]=='0':
+                        print(primaries[j][0])
+            elif arguments[i]=="secondary":
+                for j in range(len(secondaries)):
+                    if secondaries[j][1]=='0':
+                        print(secondaries[j][0])
+            elif arguments[i]=="sentinels":
+                for j in range(len(sentinels)):
+                    if sentinels[j][1]=='0':
+                        print(sentinels[j][0])
+            else:
+                global error
+                error = 1
+                print("Invalid argument, aborting.")
+
+
 def parse_arguments():
+    global error
     # grab arguments from command line
     arguments = sys.argv
     arguments.pop(0)
 
     if len(arguments) == 0:
-        # TODO call help function
-        print("TODO")
+        help()
     else:
         # if arguments begin with not a function then we call the default function
         if not arguments[0][0] == '-':
@@ -476,10 +565,13 @@ def parse_arguments():
                 if arguments[i][0] == '-':
                     break
                 function_arguments.append(arguments[i])
-                # TODO call default action aka add
+            if not function_arguments:
+                print("No arguments provided, aborting")
+                error=1
+            else:
+                add(function_arguments)
         # scan through arguments searching for functions
         for i in range(len(arguments)):
-            global error
             if error:
                 break
             if arguments[i][0] == '-':
@@ -508,6 +600,8 @@ def parse_arguments():
                         error = 1
                         break
                     delete(function_arguments)
+                elif arguments[i] == "-p" or arguments[i] == "--print":
+                    read(function_arguments)
                 else:
                     print("Invalid function, aborting")
                     error = 1
@@ -532,6 +626,22 @@ def updateList(data,list):
         else:
             list.append([data[i]['name'],0])
     return list
+
+
+def help():
+    print("Wfmastery: a smiple program to keep track of your progress.")
+    print("USAGE:")
+    print("wfmastery <OPTION> [ARGUMENTS]")
+    print("default action: '-a'")
+    print()
+    print("OPTIONS:")
+    print()
+    print("-u, --update:                Updates local files so they are up to date with game")
+    print("-a, --add:                   Adds elements")
+    print("-d, -delete:                 Deletes elements")
+    print("-p, --print:                 Prints elements from given category which were not added")
+    print()
+    print("Program created by Kacper Kurz")
 
 
 
