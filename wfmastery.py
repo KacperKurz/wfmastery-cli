@@ -289,15 +289,18 @@ def add(arguments):
     sentinels_read = csv.reader(sentinels_file_r)
     sentinels = list(sentinels_read)
 
+    added = 0
     for i in range(len(arguments)):
         for j in (warframes, archwing_guns, archwing_melees, archwings, melees, pets, primaries, secondaries, sentinels):
             for k in range(len(j)):
                 if arguments[i]==j[k][0]:
                     j[k][1]=1
+                    added = 1
                     break
-        global error
-        error = 1
-        print("Invalid argument, aborting.")
+        if not added:
+            global error
+            error = 1
+            print("Invalid argument, aborting.")
 
     warframes_file_w = open('warframes.csv', 'w')
     warframes_write = csv.writer(warframes_file_w)
@@ -394,15 +397,18 @@ def delete(arguments):
     sentinels_read = csv.reader(sentinels_file_r)
     sentinels = list(sentinels_read)
 
+    deleted = 0
     for i in range(len(arguments)):
         for j in (warframes, archwing_guns, archwing_melees, archwings, melees, pets, primaries, secondaries, sentinels):
             for k in range(len(j)):
                 if arguments[i]==j[k][0]:
                     j[k][1]=0
+                    deleted = 1
                     break
-        global error
-        error = 1
-        print("Invalid argument, aborting.")
+        if not deleted:
+            global error
+            error = 1
+            print("Invalid argument, aborting.")
 
     warframes_file_w = open('warframes.csv', 'w')
     warframes_write = csv.writer(warframes_file_w)
