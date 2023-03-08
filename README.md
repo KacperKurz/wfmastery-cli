@@ -76,7 +76,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Clone the wfmastery-cli
+1. Clone the repo
    ```sh
    git clone https://github.com/KacperKurz/wfmastery-cli.git
    ```
