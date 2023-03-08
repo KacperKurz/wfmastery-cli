@@ -8,7 +8,7 @@ import csv
 error = 0
 
 def updateWarframes():
-    warframes_data = downloadData("https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Warframes.json")
+    warframes_data = downloadData("https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Warframes.json")
     if error:
         return
 
@@ -34,7 +34,7 @@ def updateWarframes():
 
 def updateSentinels():
     sentinels_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Sentinels.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Sentinels.json")
     if error:
         return
 
@@ -60,7 +60,7 @@ def updateSentinels():
 
 def updateSecondaries():
     secondaries_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Secondary.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Secondary.json")
     if error:
         return
 
@@ -86,7 +86,7 @@ def updateSecondaries():
 
 def updatePrimaries():
     primaries_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Primary.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Primary.json")
     if error:
         return
 
@@ -112,7 +112,7 @@ def updatePrimaries():
 
 def updatePets():
     pets_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Pets.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Pets.json")
     if error:
         return
 
@@ -138,7 +138,7 @@ def updatePets():
 
 def updateMelees():
     melees_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Melee.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Melee.json")
     if error:
         return
 
@@ -164,7 +164,7 @@ def updateMelees():
 
 def updateArchwings():
     archwings_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Archwing.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Archwing.json")
     if error:
         return
 
@@ -190,7 +190,7 @@ def updateArchwings():
 
 def updateArchwingMelees():
     archwing_melees_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Arch-Melee.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Arch-Melee.json")
     if error:
         return
 
@@ -216,7 +216,7 @@ def updateArchwingMelees():
 
 def updateArchwingGuns():
     archwing_guns_data = downloadData(
-        "https://raw.githubusercontent.com/WFCD/warframe-items/development/data/json/Arch-Gun.json")
+        "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Arch-Gun.json")
     if error:
         return
 
